@@ -52,7 +52,7 @@ foo | bar_d | DELETE| destroys a *bar* record
 
 Note that each stored procedure name is prefixed with "family name" "bar", followed by an underscore, which is then appended by one of the following letters: C,R,U,D.
 
-You specify the details that cause Sails to generate the correct stored procedure calls in api/models/YOUR_MODEL.js.  Sails-oracle-sp repurposes the table name attribute such that it becomes the stored procedures' "family name".  So for this example the tableName attribute is “bar”.
+You specify the details that cause Sails to generate the correct stored procedure calls in api/models/YOUR_MODEL.js.  Sails-oracle-sp repurposes the table name attribute such that it becomes the stored procedures' "family name".  So for this example the tableName attribute is "bar".
 
 Sails-oracle-sp repurposes the column name attribute so as to specify store procedure parameters.
 
