@@ -40,7 +40,7 @@ Specify the credential details needed to connect your Oracle instance in config/
 
 Sails' model is designed to support interacting with database tables. Consequently Sail's model includes table-orientated attributes such as table name and column attributes.  Put another way, details pertaining to a specific database table (e.g., table name, column details) are stored in a Sails' model.  Sails uses the information in a table's model to conduct SQL against said table.
 
-Sails-oracle-sp is using Sails' model to specific details pertaining to a set of stored procedures instead of a table.  The fit between using Sails' model for accessing tables and stored procedures is not exact.  When used to access database tables Sail's model corresponds to exactly one table.  In contrast, generally a Sails model is used to access a “family” of four stored procedures: one for each REST verb (POST, GET, PUT and DELETE.)  Every stored procedure in this “family” has the same prefix.
+Sails-oracle-sp is using Sails' model to specific details pertaining to a set of stored procedures instead of a table.  The fit between using Sails' model for accessing tables and stored procedures is not exact.  When used to access database tables Sail's model corresponds to exactly one table.  In contrast, generally a Sails model is used to access a "family" of four stored procedures: one for each REST verb (POST, GET, PUT and DELETE.)  Every stored procedure in this "family" has the same prefix.
 As an example, consider a package named foo, with stored procedures that operate on a table named bar.  The following table shows the stored procedure names, their affect and the REST verb to which they are mapped.
 
 Package name | stored procedure name|REST Verb|description
@@ -50,9 +50,9 @@ foo | bar_r | GET| fetches a *bar* record
 foo | bar_u | PUT| updates a *bar* record
 foo | bar_d | DELETE| destroys a *bar* record
 
-Note that each stored procedure name is prefixed with “family name” "bar", followed by an underscore, which is then appended by one of the following letters: C,R,U,D.
+Note that each stored procedure name is prefixed with "family name" "bar", followed by an underscore, which is then appended by one of the following letters: C,R,U,D.
 
-You specify the details that cause Sails to generate the correct stored procedure calls in api/models/YOUR_MODEL.js.  Sails-oracle-sp repurposes the table name attribute such that it becomes the stored procedures' “family name”.  So for this example the tableName attribute is “bar”.
+You specify the details that cause Sails to generate the correct stored procedure calls in api/models/YOUR_MODEL.js.  Sails-oracle-sp repurposes the table name attribute such that it becomes the stored procedures' "family name".  So for this example the tableName attribute is “bar”.
 
 Sails-oracle-sp repurposes the column name attribute so as to specify store procedure parameters.
 
@@ -65,7 +65,7 @@ find() | bar_r | GET| fetches a *bar* record
 update() | bar_u | PUT| updates a *bar* record
 destroy() | bar_d | DELETE| destroys a *bar* record
 
-When generating the stored procedure call the adapter method appends the necessary letter to the “family name.”
+When generating the stored procedure call the adapter method appends the necessary letter to the "family name."
 
 ##### Example model named Employees using the oraclehr connection
 
