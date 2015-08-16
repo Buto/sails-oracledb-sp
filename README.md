@@ -40,8 +40,7 @@ Specify the credential details needed to connect your Oracle instance in config/
 
 Sails' model is designed to support interacting with database tables. Consequently Sail's model includes table-orientated attributes such as table name and column attributes.  Put another way, details pertaining to a specific database table (e.g., table name, column details) are stored in a Sails' model.  Sails uses the information in a table's model to conduct SQL against said table.
 
-Sails-oracle-sp is using Sails' model to specific details pertaining to a set of stored procedures instead of a table.  The fit between using Sails' model for accessing stored procedures is not exact.  When used to access database tables Sail's model corresponds to exactly one table.  In contrast, generally a Sails model is used to access a “family” of four stored procedures: one for each REST verb (POST, GET, PUT and DELETE.)  Every stored procedure in this “family” has the same prefix.
-
+Sails-oracle-sp is using Sails' model to specific details pertaining to a set of stored procedures instead of a table.  The fit between using Sails' model for accessing tables and stored procedures is not exact.  When used to access database tables Sail's model corresponds to exactly one table.  In contrast, generally a Sails model is used to access a “family” of four stored procedures: one for each REST verb (POST, GET, PUT and DELETE.)  Every stored procedure in this “family” has the same prefix.
 As an example, consider a package named foo, with stored procedures that operate on a table named bar.  The following table shows the stored procedure names, their affect and the REST verb to which they are mapped.
 
 Package name | stored procedure name|REST Verb|description
