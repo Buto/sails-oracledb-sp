@@ -43,12 +43,14 @@ Sails' model is designed to support interacting with database tables. Consequent
 Sails-oracle-sp is using Sails' model to specific details pertaining to a set of stored procedures instead of a table.  The fit between using Sails' model for accessing stored procedures is not exact.  When used to access database tables Sail's model corresponds to exactly one table.  In contrast, generally a Sails model is used to access a “family” of four stored procedures: one for each REST verb (POST, GET, PUT and DELETE.)  Every stored procedure in this “family” has the same prefix.
 
 As an example, consider a package named foo, with stored procedures that operate on a table named bar.  The following table shows the stored procedure names, their affect and the REST verb to which they are mapped.
+
 Package name | stored procedure name|REST Verb|description
 ------------ | -------------|-------------|----------
 foo | bar_c | POST| create a *bar* record
 foo | bar_r | GET| fetches a *bar* record
 foo | bar_u | PUT| updates a *bar* record
 foo | bar_d | DELETE| destroys a *bar* record
+
 Note that each stored procedure name is prefixed with “family name” "bar", followed by an underscore, which is then appended by one of the following letters: C,R,U,D.
 
 You specify the details that cause Sails to generate the correct stored procedure calls in api/models/YOUR_MODEL.js.  Sails-oracle-sp repurposes the table name attribute such that it becomes the stored procedures' “family name”.  So for this example the tableName attribute is “bar”.
