@@ -153,12 +153,9 @@ module.exports = {
 + **Syntax**
   + package.tableName_d()
 
-### Interfaces
+### Example
 
->TODO:
->Specify the interfaces this adapter will support.
->e.g. `This adapter implements the [semantic]() and [queryable]() interfaces.`
-
+See [sails-oracledb-sp-example](https://github.com/nethoncho/sails-oracledb-sp-example)
 
 ### License
 
