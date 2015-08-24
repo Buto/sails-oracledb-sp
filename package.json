@@ -1,6 +1,6 @@
 {
   "name": "sails-oracle-sp",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "An Oracle stored procedure adapter for Sails.js",
   "main": "lib/adapter.js",
   "scripts": {
