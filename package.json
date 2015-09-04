@@ -2,6 +2,30 @@
   "name": "sails-oracle-sp",
   "version": "0.1.5",
   "description": "An Oracle stored procedure adapter for Sails.js",
+  "license": "MIT",
+  "homepage": "https://github.com/Buto/sails-oracledb-sp#readme",
+  "keywords": [
+    "oracle-sp",
+    "adapter",
+    "sails",
+    "sails.js",
+    "sailsjs",
+    "oracledb",
+    "SQL",
+    "PL/SQL",
+    "OCI",
+    "client",
+    "plugin",
+    "library",
+    "driver",
+    "add-on",
+    "extension",
+    "binding",
+    "interface",
+    "module",
+    "Database",
+    "Oracle"
+  ],
   "main": "lib/adapter.js",
   "scripts": {
     "test": "node test/integration/runner -R spec -b"
@@ -10,20 +34,13 @@
     "type": "git",
     "url": "git@github.com:Buto/sails-oracledb-sp.git"
   },
-  "keywords": [
-    "oracle-sp",
-    "adapter",
-    "sails",
-    "sails.js"
-  ],
   "author": {
     "name": "John Hendrix",
     "email": "jhendrix58@gmail.com"
   },
-  "license": "MIT",
   "readmeFilename": "README.md",
   "dependencies": {
-    "oracledb": ">=0.7.0"
+    "oracledb": ">=1.1.0"
   },
   "devDependencies": {
     "waterline-adapter-tests": "~0.10.0",
@@ -41,7 +58,6 @@
   "bugs": {
     "url": "https://github.com/Buto/sails-oracledb-sp/issues"
   },
-  "homepage": "https://github.com/Buto/sails-oracledb-sp#readme",
   "maintainers": [
     {
       "name": "buto",
