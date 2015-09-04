@@ -131,28 +131,6 @@ module.exports = {
 };
 ```
 
-##### This adapter exposes the following methods:
-
-###### `find()`
-
-+ **Syntax**
-  + package.tableName_r()
-
-###### `create()`
-
-+ **Syntax**
-  + package.tableName_c()
-
-###### `update()`
-
-+ **Syntax**
-  + package.tableName_u()
-
-###### `destroy()`
-
-+ **Syntax**
-  + package.tableName_d()
-
 ### Example
 
 See [sails-oracledb-sp-example](https://github.com/nethoncho/sails-oracledb-sp-example)
