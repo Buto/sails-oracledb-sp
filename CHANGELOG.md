@@ -1,5 +1,9 @@
 # Change Log
 
+## node-oracledb v0.1.7 (5 Sep 2015)
+
+- Refactored code, added _processOptions, _processValues and _processCursor
+
 ## node-oracledb v0.1.6 (4 Sep 2015)
 
 - Added CHANGELOG
