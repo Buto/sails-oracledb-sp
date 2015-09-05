@@ -1,6 +1,6 @@
 {
   "name": "sails-oracle-sp",
-  "version": "0.1.6",
+  "version": "0.1.7",
   "description": "An Oracle stored procedure adapter for Sails.js",
   "license": "MIT",
   "homepage": "https://github.com/Buto/sails-oracledb-sp#readme",
