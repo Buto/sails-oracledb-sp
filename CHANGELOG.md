@@ -1,5 +1,12 @@
 # Change Log
 
+## node-oracledb v0.1.9 (17 Oct 2015)
+
+- Synced oracledb to version 1.3.0
+- Removed dependency on WLError, Fixes #6
+- Use log.silly except for unknown errors, Fixes #5
+- Use the registerConnection callback properly, Fixes #7
+
 ## node-oracledb v0.1.8 (4 Oct 2015)
 
 - updated oracledb dependency to 1.2.0
