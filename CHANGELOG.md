@@ -1,5 +1,9 @@
 # Change Log
 
+## node-oracledb v0.1.10 (22 Oct 2015)
+
+- Revert back to using WLError
+
 ## node-oracledb v0.1.9 (17 Oct 2015)
 
 - Synced oracledb to version 1.3.0
