@@ -1,5 +1,9 @@
 # Change Log
 
+## node-oracledb v0.5.0 (26 Oct 2015)
+
+- Refactored getting rows from the result set
+
 ## node-oracledb v0.1.10 (22 Oct 2015)
 
 - Revert back to using WLError
