@@ -1,5 +1,9 @@
 # Change Log
 
+## node-oracledb v0.5.2 (20 Mar 2016)
+
+- Synced with oracledb 1.7.1
+
 ## node-oracledb v0.5.1 (07 Nov 2015)
 
 - Fixed issue with closing result set after getRows error
