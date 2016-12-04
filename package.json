@@ -40,7 +40,7 @@
   },
   "readmeFilename": "README.md",
   "dependencies": {
-    "oracledb": "^1.7.1"
+    "oracledb": "^1.11.0"
   },
   "devDependencies": {
     "waterline-adapter-tests": "~0.10.0",
