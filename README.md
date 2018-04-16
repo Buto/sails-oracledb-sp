@@ -37,7 +37,7 @@ Specify the credential details needed to connect your Oracle instance in config/
 
 ```javascript
   oraclehr: {
-    adapter: 'sails-oracle-sp',
+    adapter: 'sails-oracledb-sp',
     user: 'hr',
     password: 'welcome',
     package: 'HR',
