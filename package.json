@@ -56,7 +56,6 @@
     "type": "oracledb-sp",
     "interfaces": [
       "semantic",
-      "queryable",
       "associations"
     ],
     "features": [
