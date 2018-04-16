@@ -1,0 +1,11 @@
+.git
+.gitignore
+Dockerfile
+LICENSE
+READMME.md
+*~
+node_modules
+test
+lib
+*.json
+*.js
