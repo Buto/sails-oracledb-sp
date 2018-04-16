@@ -3,7 +3,7 @@
  */
 
 var _ = require('@sailshq/lodash');
-// var someLibrary = require('nodejs-client-lib-for-some-awesome-db');
+var oracledb = require('oracledb');
 
 
 /**
@@ -21,7 +21,7 @@ var registeredDatastores = {};
 
 
 /**
- * @ben/sails-oracledb-sp
+ * sails-oracledb-sp
  *
  * Expose the adapater definition.
  *
@@ -66,7 +66,7 @@ module.exports = {
 
   // Default datastore configuration.
   defaults: {
-    // foo: 'bar',
+    cursorName: 'DETAILS'
   },
 
 
