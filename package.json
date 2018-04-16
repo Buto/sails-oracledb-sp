@@ -1,7 +1,7 @@
 {
-  "name": "sails-oracle-sp",
-  "version": "0.5.3",
-  "description": "An Oracle stored procedure adapter for Sails.js",
+  "name": "sails-oracledb-sp",
+  "version": "0.6.0",
+  "description": "An Oracle stored procedure adapter for Sails / Waterline",
   "license": "MIT",
   "homepage": "https://github.com/Buto/sails-oracledb-sp#readme",
   "keywords": [
@@ -10,10 +10,12 @@
     "sails",
     "sails.js",
     "sailsjs",
+    "waterline",
+    "orm",
+    "database-adapter",
     "oracledb",
     "SQL",
     "PL/SQL",
-    "OCI",
     "client",
     "plugin",
     "library",
@@ -26,9 +28,11 @@
     "Database",
     "Oracle"
   ],
-  "main": "lib/adapter.js",
+  "main": "index.js",
   "scripts": {
-    "test": "node test/integration/runner -R spec -b"
+    "test": "node test/run-standard-tests",
+    "pretest": "npm run lint",
+    "lint": "node ./node_modules/eslint/bin/eslint . --max-warnings=0"
   },
   "repository": {
     "type": "git",
@@ -40,31 +44,35 @@
   },
   "readmeFilename": "README.md",
   "dependencies": {
-    "oracledb": "^1.11.0"
+    "@sailshq/lodash": "^3.10.2",
+    "oracledb": "^2.2.0"
   },
   "devDependencies": {
-    "waterline-adapter-tests": "~0.10.0",
-    "mocha": "*",
-    "captains-log": "~0.11.0"
+    "eslint": "3.19.0",
+    "waterline-adapter-tests": "^1.0.0"
   },
   "waterlineAdapter": {
-    "type": "oracle-sp",
+    "waterlineVersion": "~0.13.0",
+    "type": "oracledb-sp",
     "interfaces": [
       "semantic",
-      "queryable"
+      "queryable",
+      "associations"
     ],
-    "waterlineVersion": "~0.10.0"
+    "features": [
+      "crossAdapter"
+    ]
   },
   "bugs": {
     "url": "https://github.com/Buto/sails-oracledb-sp/issues"
   },
   "maintainers": [
     {
-      "name": "buto",
+      "name": "John Hendrix",
       "email": "jendrix58@gmail.com"
     },
     {
-      "name": "nethoncho",
+      "name": "Ben Adams",
       "email": "nethoncho@gmail.com"
     }
   ]
