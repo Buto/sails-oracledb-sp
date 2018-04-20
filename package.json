@@ -50,18 +50,15 @@
   },
   "devDependencies": {
     "eslint": "3.19.0",
-    "waterline-adapter-tests": "^1.0.0"
+    "waterline-adapter-tests": "^1.0.1"
   },
   "waterlineAdapter": {
     "waterlineVersion": "~0.13.0",
     "type": "oracledb-sp",
     "interfaces": [
-      "semantic",
-      "associations"
+      "semantic"
     ],
-    "features": [
-      "crossAdapter"
-    ]
+    "features": []
   },
   "bugs": {
     "url": "https://github.com/Buto/sails-oracledb-sp/issues"
