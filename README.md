@@ -45,8 +45,7 @@ Specify the credential details needed to connect your Oracle instance in config/
     user: 'hr',
     password: 'welcome',
     package: 'HR',
-    cursorName: 'DETAILS',
-    connectString: 'localhost/xe'
+    cursorName: 'DETAILS'
   }
 ```
 
@@ -167,13 +166,13 @@ This adapter implements the following methods:
 
 | Method               | Status            | Category      |
 |:---------------------|:------------------|:--------------|
-| registerDatastore    | _**in progress**_ | LIFECYCLE     |
-| teardown             | _**in progress**_ | LIFECYCLE     |
-| create               | Planned           | DML           |
-| createEach           | Planned           | DML           |
-| update               | Planned           | DML           |
-| destroy              | Planned           | DML           |
-| find                 | Planned           | DQL           |
+| registerDatastore    | Complete          | LIFECYCLE     |
+| teardown             | Complete          | LIFECYCLE     |
+| create               | _**in progress**_ | DML           |
+| createEach           | _**in progress**_ | DML           |
+| update               | _**in progress**_ | DML           |
+| destroy              | _**in progress**_ | DML           |
+| find                 | _**in progress**_ | DQL           |
 | join                 | Not Applicable    | DQL           |
 | count                | Not Planned       | DQL           |
 | sum                  | Not Planned       | DQL           |

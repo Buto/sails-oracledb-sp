@@ -3,8 +3,13 @@
  */
 
 var _ = require('@sailshq/lodash');
-var oracledb = require('oracledb');
 
+/**
+ * Module comcomponents
+ */
+
+var _registerDatastore = require('./lib/registerDatastore.js');
+var _teardown = require('./lib/teardown.js');
 
 /**
  * Module state
@@ -45,7 +50,7 @@ module.exports = {
 
 
   // The identity of this adapter, to be referenced by datastore configurations in a Sails app.
-  identity: 'oracledb-sp',
+  identity: 'sails-oracledb-sp',
 
 
   // Waterline Adapter API Version
@@ -63,10 +68,15 @@ module.exports = {
   // > applications which use this adapter.
   adapterApiVersion: 1,
 
-
+  // Example url oracledb-sp://user:password@host:port/sid/package/cursorName
   // Default datastore configuration.
   defaults: {
+    host: 'localhost',
+    port: 1521,
+    sid: 'XE',
+    package: 'SAILS',
     cursorName: 'DETAILS'
+//    findCustomExceptions: 'RETURN_CODES_R'
   },
 
 
@@ -90,7 +100,7 @@ module.exports = {
   //  ███████╗██║██║     ███████╗╚██████╗   ██║   ╚██████╗███████╗███████╗                        //
   //  ╚══════╝╚═╝╚═╝     ╚══════╝ ╚═════╝   ╚═╝    ╚═════╝╚══════╝╚══════╝                        //
   //                                                                                              //
-  // Lifecycle adapter methods:                                                                   //
+  // Lifecycle adapter mepoolAliaspoolAliasthods:                                                                   //
   // Methods related to setting up and tearing down; registering/un-registering datastores.       //
   //////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -115,68 +125,8 @@ module.exports = {
    *               @param {Error?}
    * - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
    */
-  registerDatastore: function (datastoreConfig, physicalModelsReport, done) {
-
-    // Grab the unique name for this datastore for easy access below.
-    var datastoreName = datastoreConfig.identity;
-
-    // Some sanity checks:
-    if (!datastoreName) {
-      return done(new Error('Consistency violation: A datastore should contain an "identity" property: a special identifier that uniquely identifies it across this app.  This should have been provided by Waterline core!  If you are seeing this message, there could be a bug in Waterline, or the datastore could have become corrupted by userland code, or other code in this adapter.  If you determine that this is a Waterline bug, please report this at https://sailsjs.com/bugs.'));
-    }
-    if (registeredDatastores[datastoreName]) {
-      return done(new Error('Consistency violation: Cannot register datastore: `' + datastoreName + '`, because it is already registered with this adapter!  This could be due to an unexpected race condition in userland code (e.g. attempting to initialize Waterline more than once), or it could be due to a bug in this adapter.  (If you get stumped, reach out at https://sailsjs.com/support.)'));
-    }
-
-
-    // Ensure a `url` was configured.
-    // > To help standardize configuration for end users, adapter authors
-    // > are encouraged to support the `url` setting, if conceivable.
-    // >
-    // > Read more here:
-    // > https://sailsjs.com/config/datastores#?the-connection-url
-    if (!datastoreConfig.url) {
-      return done(new Error('Invalid configuration for datastore `' + datastoreName + '`:  Missing `url` (See https://sailsjs.com/config/datastores#?the-connection-url for more info.)'));
-    }
-
-
-    // Build a "connection manager" -- an object that contains all of the state for this datastore.
-    // This might be a MySQL connection pool, a Mongo client instance (`db`), or something even simpler.
-    // For example, in sails-postgresql, `manager` encapsulates a connection pool that the stateless
-    // `machinepack-postgresql` driver uses to communicate with the database.  The actual form of the
-    // manager is completely dependent on this adapter.  In other words, it is custom and database-specific.
-    // This is where you should store any custom metadata specific to this datastore.
-    //
-    // > TODO: Replace this setTimeout with real logic that creates the manager.
-    setTimeout(function(){
-      var manager;//<< (see the other TODO just above here)
-
-      // Save information about the datastore to the `datastores` dictionary, keyed under
-      // the datastore's unique name.  The information should itself be in the form of a
-      // dictionary (plain JavaScript object), and have three keys:
-      //
-      // `manager`: The database-specific "connection manager" that we just built above.
-      //
-      // `config  : Configuration options for the datastore.  Should be passed straight through
-      //            from what was provided as the `datastoreConfig` argument to this method.
-      //
-      // `driver` : Optional.  A reference to a stateless, underlying Node-Machine driver.
-      //            (For instance `machinepack-postgresql` for the `sails-postgresql` adapter.)
-      //            Note that this stateless, standardized driver will be merged into the main
-      //            concept of an adapter in future versions of the Waterline adapter spec.
-      //            (See https://github.com/node-machine/driver-interface for more informaiton.)
-      //
-      registeredDatastores[datastoreName] = {
-        config: datastoreConfig,
-        manager: manager,
-        driver: undefined // << TODO: include driver here (if relevant)
-      };
-
-      // Inform Waterline that the datastore was registered successfully.
-      return done();
-
-    }, 16);
-
+  registerDatastore: function registerDatastore(datastoreConfig, physicalModelsReport, done) {
+    _registerDatastore(registeredDatastores, datastoreConfig, physicalModelsReport, done);
   },
 
 
@@ -198,31 +148,8 @@ module.exports = {
    * - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
    */
   teardown: function (datastoreName, done) {
-
-    // Look up the datastore entry (manager/driver/config).
-    var dsEntry = registeredDatastores[datastoreName];
-
-    // Sanity check:
-    if (_.isUndefined(dsEntry)) {
-      return done(new Error('Consistency violation: Attempting to tear down a datastore (`'+datastoreName+'`) which is not currently registered with this adapter.  This is usually due to a race condition in userland code (e.g. attempting to tear down the same ORM instance more than once), or it could be due to a bug in this adapter.  (If you get stumped, reach out at https://sailsjs.com/support.)'));
-    }
-
-
-    // Destroy the manager.
-    //
-    // > TODO: Replace this setTimeout with real logic that destroys the manager.
-    setTimeout(function(){
-
-      // Now, un-register the datastore.
-      delete registeredDatastores[datastoreName];
-
-      // Inform Waterline that we're done, and that everything went as expected.
-      return done();
-
-    }, 16);
-
+    _teardown(registeredDatastores, datastoreName, done);
   },
-
 
   //////////////////////////////////////////////////////////////////////////////////////////////////
   //  ██████╗ ███╗   ███╗██╗                                                                      //
