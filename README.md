@@ -31,9 +31,13 @@ using models, datastores, and adapters in your app/microservice.
 
 #### Sails connection
 
-Specify the credential details needed to connect your Oracle instance in config/connections.js
+Specify the credential details needed to connect your Oracle instance in config/datastores.js
 
-#### Example connection named oraclehr
+#### Example url style
+
+```oracledb-sp://user:password@host:port/sid/package/cursorName```
+
+#### Example datastore named oraclehr
 
 ```javascript
   oraclehr: {
